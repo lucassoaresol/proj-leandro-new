@@ -1,0 +1,22 @@
+{
+  "name": "proj-leandro",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "24.7.0",
+    "@typescript-eslint/eslint-plugin": "8.6.0",
+    "@typescript-eslint/parser": "8.6.0",
+    "eslint": "8.57.0",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-import-resolver-typescript": "3.6.3",
+    "eslint-plugin-import": "2.30.0",
+    "eslint-plugin-prettier": "5.2.1",
+    "tsup": "8.5.0",
+    "tsx": "4.20.6",
+    "typescript": "5.2.2"
+  }
+}
