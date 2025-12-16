@@ -1,4 +1,7 @@
 node_modules
+
+pg-utils.json
+
 dist
 logs
 *lock*
