@@ -7,7 +7,7 @@ export class ExcludeManagerController {
   static async handle(request: FastifyRequest, reply: FastifyReply) {
     const params = paramsIdSchema.parse(request.params);
 
-    await ExcludeManagerUseCase.execute({ ...params });
+    await ExcludeManagerUseCase.execute(params);
 
     return reply.code(204).send();
   }
