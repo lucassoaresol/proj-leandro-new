@@ -3,6 +3,7 @@ import { FastifyPluginAsync } from "fastify";
 import criteriaRouter from "./modules/criteria/routes";
 import groupRouter from "./modules/group/routes";
 import managerRouter from "./modules/manager/routes";
+import objectRouter from "./modules/object/routes";
 import projectRouter from "./modules/project/routes";
 import projectCriteriaRouter from "./modules/projectCriteria/routes";
 import projectCriterionPairwiseEvaluationRouter from "./modules/projectCriterionPairwiseEvaluation/routes";
@@ -18,6 +19,7 @@ const router: FastifyPluginAsync = async (fastify) => {
     prefix: "/project-criterion-pairwise-evaluations",
   });
   fastify.register(groupRouter, { prefix: "/groups" });
+  fastify.register(objectRouter, { prefix: "/objects" });
 };
 
 export default router;
