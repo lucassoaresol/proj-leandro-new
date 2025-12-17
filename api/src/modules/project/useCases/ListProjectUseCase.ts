@@ -51,10 +51,10 @@ export class ListProjectUseCase {
         table: "projects",
         where,
       }),
-      database.findMany<IProject>({
+      database.findMany<{ id: number }>({
         table: "projects",
         where,
-        select,
+        select: { id: true },
         orderBy,
         limit,
         offset,
