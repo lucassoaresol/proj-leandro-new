@@ -29,13 +29,11 @@ export class UpdateManagerUseCase {
     });
 
     if (manager) {
-      let updatedManager: any = {};
       let updatedDataDict: any = {};
 
       Object.keys(dataDict).forEach((k) => {
         if (k in manager) {
           if ((dataDict as any)[k] !== (manager as any)[k]) {
-            updatedManager[k] = (manager as any)[k];
             updatedDataDict[k] = (dataDict as any)[k];
           }
         } else {
@@ -48,16 +46,6 @@ export class UpdateManagerUseCase {
           table: "managers",
           dataDict: updatedDataDict,
           where: { id },
-        });
-
-        await database.insertIntoTable({
-          table: "audit_log",
-          dataDict: {
-            table_name: "managers",
-            data_id: id,
-            current_value: updatedDataDict,
-            previous_value: updatedManager,
-          },
         });
       }
     }

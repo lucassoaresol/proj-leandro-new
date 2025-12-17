@@ -18,7 +18,7 @@ export class GetManagerByPublicIdUseCase {
     });
 
     if (!manager) {
-      throw new AppError("customer not found", 404);
+      throw new AppError("manager not found", 404);
     }
 
     return manager;

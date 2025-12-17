@@ -9,7 +9,7 @@ export class CreateManagerUseCase {
   static async execute({ name }: IInput): Promise<IOutput> {
     const database = await databaseProjLeandroPromise;
 
-    await database.insertIntoTable<{ id: number }>({
+    await database.insertIntoTable({
       table: "managers",
       dataDict: {
         name,
