@@ -8,6 +8,7 @@ import projectRouter from "./modules/project/routes";
 import projectCriteriaRouter from "./modules/projectCriteria/routes";
 import projectCriterionPairwiseEvaluationRouter from "./modules/projectCriterionPairwiseEvaluation/routes";
 import projectManagerRouter from "./modules/projectManager/routes";
+import projectObjectRouter from "./modules/projectObject/routes";
 
 const router: FastifyPluginAsync = async (fastify) => {
   fastify.register(managerRouter, { prefix: "/managers" });
@@ -20,6 +21,7 @@ const router: FastifyPluginAsync = async (fastify) => {
   });
   fastify.register(groupRouter, { prefix: "/groups" });
   fastify.register(objectRouter, { prefix: "/objects" });
+  fastify.register(projectObjectRouter, { prefix: "/project-objects" });
 };
 
 export default router;
