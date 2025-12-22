@@ -2,7 +2,12 @@ import { z } from "zod";
 
 import { getColumnForSorting } from "../../utils/getColumnForSorting";
 import { transformSelectColumns } from "../../utils/transformSelectColumns";
-import { enumSchema, numberSchema, querySchema } from "../schemas";
+import {
+  arrayNumberSchema,
+  enumSchema,
+  numberSchema,
+  querySchema,
+} from "../schemas";
 
 export const createProjectManagerSchema = z.object({
   project_id: z.number(),
@@ -22,6 +27,8 @@ const defaultColumnsProjectManager = [
 ];
 
 export const listProjectManagerSchema = querySchema.extend({
+  manager_id: arrayNumberSchema,
+  project_id: arrayNumberSchema,
   sort: enumSchema(defaultColumnsProjectManager, "lower")
     .optional()
     .transform((value) =>
