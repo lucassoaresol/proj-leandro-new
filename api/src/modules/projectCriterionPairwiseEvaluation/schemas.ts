@@ -2,7 +2,12 @@ import { z } from "zod";
 
 import { getColumnForSorting } from "../../utils/getColumnForSorting";
 import { transformSelectColumns } from "../../utils/transformSelectColumns";
-import { enumSchema, numberSchema, querySchema } from "../schemas";
+import {
+  arrayNumberSchema,
+  enumSchema,
+  numberSchema,
+  querySchema,
+} from "../schemas";
 
 export const createProjectCriterionPairwiseEvaluationSchema = z.object({
   rating: z.number().int().positive().optional().default(1),
@@ -25,6 +30,8 @@ const defaultColumnsProjectCriterionPairwiseEvaluation = [
 ];
 
 export const listProjectCriterionPairwiseEvaluationSchema = querySchema.extend({
+  manager_id: arrayNumberSchema,
+  project_id: numberSchema,
   sort: enumSchema(defaultColumnsProjectCriterionPairwiseEvaluation, "lower")
     .optional()
     .transform((value) =>

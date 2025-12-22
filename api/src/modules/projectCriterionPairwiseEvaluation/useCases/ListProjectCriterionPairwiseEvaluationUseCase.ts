@@ -18,6 +18,8 @@ interface IOutput {
 
 export class ListProjectCriterionPairwiseEvaluationUseCase {
   static async execute({
+    manager_id,
+    project_id,
     order,
     select,
     sort,
@@ -26,7 +28,7 @@ export class ListProjectCriterionPairwiseEvaluationUseCase {
     page = 1,
   }: IInput): Promise<IOutput> {
     const database = await databaseProjLeandroPromise;
-    const filters = { search };
+    const filters = { search, manager_id, project_id };
     const where: IWhere = {};
     const orderBy: IOrderBy = {};
 
@@ -38,6 +40,8 @@ export class ListProjectCriterionPairwiseEvaluationUseCase {
             "ca.name": { value, mode: "ilike" },
             "cb.name": { value, mode: "ilike" },
           };
+        } else if (key === "project_id") {
+          where["m.project_id"] = value;
         } else {
           where[key] = value;
         }
