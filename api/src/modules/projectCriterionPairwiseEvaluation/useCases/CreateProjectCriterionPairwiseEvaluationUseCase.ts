@@ -31,6 +31,20 @@ export class CreateProjectCriterionPairwiseEvaluationUseCase {
       );
     }
 
+    if (criterion_a_id === criterion_b_id) {
+      rating = 1;
+    } else {
+      await database.insertIntoTable({
+        table: "project_criterion_pairwise_evaluations",
+        dataDict: {
+          criterion_a_id: criterion_b_id,
+          criterion_b_id: criterion_a_id,
+          manager_id,
+          rating: 1 / rating,
+        },
+      });
+    }
+
     await database.insertIntoTable({
       table: "project_criterion_pairwise_evaluations",
       dataDict: {
