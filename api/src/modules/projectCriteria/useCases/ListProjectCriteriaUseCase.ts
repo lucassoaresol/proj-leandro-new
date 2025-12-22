@@ -15,6 +15,8 @@ interface IOutput {
 
 export class ListProjectCriteriaUseCase {
   static async execute({
+    criteria_id,
+    project_id,
     order,
     select,
     sort,
@@ -23,7 +25,7 @@ export class ListProjectCriteriaUseCase {
     page = 1,
   }: IInput): Promise<IOutput> {
     const database = await databaseProjLeandroPromise;
-    const filters = { search };
+    const filters = { search, criteria_id, project_id };
     const where: IWhere = {};
     const orderBy: IOrderBy = {};
 

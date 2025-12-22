@@ -2,7 +2,12 @@ import { z } from "zod";
 
 import { getColumnForSorting } from "../../utils/getColumnForSorting";
 import { transformSelectColumns } from "../../utils/transformSelectColumns";
-import { enumSchema, numberSchema, querySchema } from "../schemas";
+import {
+  arrayNumberSchema,
+  enumSchema,
+  numberSchema,
+  querySchema,
+} from "../schemas";
 
 export const createProjectCriteriaSchema = z.object({
   optimization_goal: z.enum(["MAXIMIZE", "MINIMIZE"]),
@@ -22,6 +27,8 @@ const defaultColumnsProjectCriteria = [
 ];
 
 export const listProjectCriteriaSchema = querySchema.extend({
+  criteria_id: arrayNumberSchema,
+  project_id: arrayNumberSchema,
   sort: enumSchema(defaultColumnsProjectCriteria, "lower")
     .optional()
     .transform((value) =>
