@@ -1,7 +1,7 @@
 -- up
 CREATE TABLE "project_criterion_pairwise_evaluations" (
   "id" SERIAL PRIMARY KEY,
-  "rating" INTEGER NOT NULL DEFAULT 1,
+  "rating" NUMERIC NOT NULL DEFAULT 1,
   "manager_id" INTEGER NOT NULL,
   "criterion_a_id" INTEGER NOT NULL,
   "criterion_b_id" INTEGER NOT NULL,

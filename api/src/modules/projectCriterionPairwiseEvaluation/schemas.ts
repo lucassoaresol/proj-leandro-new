@@ -10,7 +10,7 @@ import {
 } from "../schemas";
 
 export const createProjectCriterionPairwiseEvaluationSchema = z.object({
-  rating: z.number().int().positive().optional().default(1),
+  rating: z.number().positive().optional().default(1),
   manager_id: z.number(),
   criterion_a_id: z.number(),
   criterion_b_id: z.number(),
@@ -96,5 +96,5 @@ export const retrieveProjectCriterionPairwiseEvaluationSchema = z.object({
 });
 
 export const updateProjectCriterionPairwiseEvaluationSchema = z.object({
-  rating: z.number().int().positive().optional(),
+  rating: z.number().positive().optional(),
 });
