@@ -98,3 +98,8 @@ export const retrieveProjectCriterionPairwiseEvaluationSchema = z.object({
 export const updateProjectCriterionPairwiseEvaluationSchema = z.object({
   rating: z.number().positive().optional(),
 });
+
+export const calculateProjectCriterionCRSchema = z.object({
+  manager_id: z.number(),
+  project_id: z.number(),
+});

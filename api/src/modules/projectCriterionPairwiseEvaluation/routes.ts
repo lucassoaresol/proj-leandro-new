@@ -1,5 +1,6 @@
 import { FastifyPluginAsync } from "fastify";
 
+import { CalculateProjectCriterionCRController } from "./controllers/CalculateProjectCriterionCRController";
 import { CreateProjectCriterionPairwiseEvaluationController } from "./controllers/CreateProjectCriterionPairwiseEvaluationController";
 import { ExcludeProjectCriterionPairwiseEvaluationController } from "./controllers/ExcludeProjectCriterionPairwiseEvaluationController";
 import { ListProjectCriterionPairwiseEvaluationController } from "./controllers/ListProjectCriterionPairwiseEvaluationController";
@@ -10,6 +11,8 @@ const projectCriterionPairwiseEvaluationRouter: FastifyPluginAsync = async (
   fastify,
 ) => {
   fastify.post("", CreateProjectCriterionPairwiseEvaluationController.handle);
+
+  fastify.post("/calculate-cr", CalculateProjectCriterionCRController.handle);
 
   fastify.get("", ListProjectCriterionPairwiseEvaluationController.handle);
 

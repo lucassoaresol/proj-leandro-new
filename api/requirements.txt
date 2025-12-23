@@ -1,0 +1,4 @@
+numpy==2.4.0
+pg_utils @ git+https://github.com/lucassoaresol/pg-utils-python@5615177bd8a1ba5d18fab095dc77fc9e08a05933
+psycopg==3.3.2
+psycopg-binary==3.3.2

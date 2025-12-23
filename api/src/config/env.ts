@@ -6,8 +6,10 @@ const schema = z.object({
     .string()
     .default("3000")
     .transform((val) => parseInt(val, 10)),
+  envType: z.enum(["linux", "windows"]).default("linux"),
 });
 
 export const env = schema.parse({
   port: process.env.PORT,
+  envType: process.env.ENV_TYPE,
 });

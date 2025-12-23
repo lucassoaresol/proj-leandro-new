@@ -1,4 +1,5 @@
 node_modules
+venv
 
 pg-utils.json
 
@@ -6,3 +7,4 @@ dist
 logs
 *lock*
 .env
+__pycache__

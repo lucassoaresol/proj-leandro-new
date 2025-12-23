@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import {
+  calculateProjectCriterionCRSchema,
   createProjectCriterionPairwiseEvaluationSchema,
   listProjectCriterionPairwiseEvaluationSchema,
   retrieveProjectCriterionPairwiseEvaluationSchema,
@@ -33,3 +34,7 @@ export type IProjectCriterionPairwiseEvaluationDTO = z.infer<
 > & {
   id: number;
 };
+
+export type IProjectCriterionCRCalculate = z.infer<
+  typeof calculateProjectCriterionCRSchema
+>;
