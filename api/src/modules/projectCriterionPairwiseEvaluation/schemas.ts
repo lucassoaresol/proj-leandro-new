@@ -9,8 +9,25 @@ import {
   querySchema,
 } from "../schemas";
 
+const saatyRatings = [1, 3, 5, 7, 9, 1 / 3, 1 / 5, 1 / 7, 1 / 9];
+const ratingTolerance = 0.0000000001;
+
+const saatyRatingSchema = z
+  .number()
+  .positive()
+  .refine(
+    (value) =>
+      saatyRatings.some(
+        (allowedValue) => Math.abs(value - allowedValue) < ratingTolerance,
+      ),
+    {
+      message:
+        "Rating must be one of the Saaty scale values: 1, 3, 5, 7, 9, 1/3, 1/5, 1/7, or 1/9",
+    },
+  );
+
 export const createProjectCriterionPairwiseEvaluationSchema = z.object({
-  rating: z.number().positive().optional().default(1),
+  rating: saatyRatingSchema.optional().default(1),
   manager_id: z.number(),
   criterion_a_id: z.number(),
   criterion_b_id: z.number(),
@@ -96,7 +113,7 @@ export const retrieveProjectCriterionPairwiseEvaluationSchema = z.object({
 });
 
 export const updateProjectCriterionPairwiseEvaluationSchema = z.object({
-  rating: z.number().positive().optional(),
+  rating: saatyRatingSchema.optional(),
 });
 
 export const calculateProjectCriterionCRSchema = z.object({

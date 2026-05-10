@@ -1,5 +1,5 @@
 import databaseProjLeandroPromise from "../../../db/projLeandro";
-import { IWhere, IOrderBy } from "../../interfaces";
+import { IOrderBy, IWhere } from "../../interfaces";
 import {
   IProjectCriterionPairwiseEvaluation,
   IProjectCriterionPairwiseEvaluationList,
@@ -41,7 +41,7 @@ export class ListProjectCriterionPairwiseEvaluationUseCase {
             "cb.name": { value, mode: "ilike" },
           };
         } else if (key === "project_id") {
-          where["m.project_id"] = value;
+          where["pm.project_id"] = value;
         } else {
           where[key] = value;
         }
@@ -58,18 +58,40 @@ export class ListProjectCriterionPairwiseEvaluationUseCase {
       database.count({
         table: "project_criterion_pairwise_evaluations",
         joins: [
-          { table: "managers", on: { manager_id: "id" } },
-          { table: "criteria", alias: "ca", on: { criterion_a_id: "id" } },
-          { table: "criteria", alias: "cb", on: { criterion_b_id: "id" } },
+          { table: "project_managers", on: { manager_id: "id" } },
+          { table: "managers", on: { "pm.manager_id": "id" } },
+          {
+            table: "project_criteria",
+            alias: "pca",
+            on: { criterion_a_id: "id" },
+          },
+          {
+            table: "project_criteria",
+            alias: "pcb",
+            on: { criterion_b_id: "id" },
+          },
+          { table: "criteria", alias: "ca", on: { "pca.criteria_id": "id" } },
+          { table: "criteria", alias: "cb", on: { "pcb.criteria_id": "id" } },
         ],
         where,
       }),
       database.findMany<{ id: number }>({
         table: "project_criterion_pairwise_evaluations",
         joins: [
-          { table: "managers", on: { manager_id: "id" } },
-          { table: "criteria", alias: "ca", on: { criterion_a_id: "id" } },
-          { table: "criteria", alias: "cb", on: { criterion_b_id: "id" } },
+          { table: "project_managers", on: { manager_id: "id" } },
+          { table: "managers", on: { "pm.manager_id": "id" } },
+          {
+            table: "project_criteria",
+            alias: "pca",
+            on: { criterion_a_id: "id" },
+          },
+          {
+            table: "project_criteria",
+            alias: "pcb",
+            on: { criterion_b_id: "id" },
+          },
+          { table: "criteria", alias: "ca", on: { "pca.criteria_id": "id" } },
+          { table: "criteria", alias: "cb", on: { "pcb.criteria_id": "id" } },
         ],
         where,
         select: { id: true },
