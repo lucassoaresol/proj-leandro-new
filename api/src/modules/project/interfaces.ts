@@ -7,12 +7,15 @@ import {
   updateProjectSchema,
 } from "./schemas";
 
+export type IProjectStatus = "OPEN" | "FINISHED" | "CANCELED";
+
 export interface IProject {
   id: number;
   name: string;
   description?: string;
   started_at?: Date;
   ended_at?: Date;
+  status: IProjectStatus;
   public_id: string;
   created_at: Date;
   updated_at: Date;

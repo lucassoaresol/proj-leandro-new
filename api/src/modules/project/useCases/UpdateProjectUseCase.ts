@@ -13,6 +13,7 @@ export class UpdateProjectUseCase {
     description,
     started_at,
     ended_at,
+    status,
   }: IInput): Promise<IOutput> {
     const database = await databaseProjLeandroPromise;
 
@@ -21,6 +22,7 @@ export class UpdateProjectUseCase {
       description,
       started_at,
       ended_at,
+      status,
     });
 
     const select = Object.keys(dataDict).reduce<Record<string, boolean>>(

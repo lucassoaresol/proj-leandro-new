@@ -25,6 +25,7 @@ export interface ManagerUpdateDTO {
 export interface Project {
   id: number;
   name: string;
+  status: ProjectStatus;
   public_id: string;
   created_at: string;
   updated_at: string;
@@ -39,11 +40,15 @@ export interface ProjectResponse {
 
 export interface ProjectCreateDTO {
   name: string;
+  status?: ProjectStatus;
 }
 
 export interface ProjectUpdateDTO {
-  name: string;
+  name?: string;
+  status?: ProjectStatus;
 }
+
+export type ProjectStatus = 'OPEN' | 'FINISHED' | 'CANCELED';
 
 export interface ProjectManager {
   id: number;

@@ -4,11 +4,14 @@ import { getColumnForSorting } from "../../utils/getColumnForSorting";
 import { transformSelectColumns } from "../../utils/transformSelectColumns";
 import { enumSchema, numberSchema, querySchema } from "../schemas";
 
+export const projectStatusSchema = z.enum(["OPEN", "FINISHED", "CANCELED"]);
+
 export const createProjectSchema = z.object({
   name: z.string().min(2),
   description: z.string().optional(),
   started_at: z.coerce.date().optional(),
   ended_at: z.coerce.date().optional(),
+  status: projectStatusSchema.optional(),
 });
 
 const defaultColumnsProject = [
@@ -17,6 +20,7 @@ const defaultColumnsProject = [
   "description",
   "started_at",
   "ended_at",
+  "status",
   "public_id",
   "created_at",
   "updated_at",
@@ -70,8 +74,9 @@ export const updateProjectSchema = z
     description: z.string().optional(),
     started_at: z.coerce.date().optional(),
     ended_at: z.coerce.date().optional(),
+    status: projectStatusSchema.optional(),
   })
   .refine((data) => Object.values(data).some((value) => value !== undefined), {
     message:
-      'At least one field ("name", "description", "started_at", "ended_at") must be provided.',
+      'At least one field ("name", "description", "started_at", "ended_at", "status") must be provided.',
   });

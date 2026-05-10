@@ -1,4 +1,5 @@
 import databaseProjLeandroPromise from "../../../db/projLeandro";
+import { removeUndefinedValues } from "../../../utils/removeUndefinedValues";
 import { IProjectCreate } from "../interfaces";
 
 type IInput = IProjectCreate;
@@ -11,17 +12,19 @@ export class CreateProjectUseCase {
     description,
     started_at,
     ended_at,
+    status,
   }: IInput): Promise<IOutput> {
     const database = await databaseProjLeandroPromise;
 
     await database.insertIntoTable({
       table: "projects",
-      dataDict: {
+      dataDict: removeUndefinedValues({
         name,
         description,
         started_at,
         ended_at,
-      },
+        status,
+      }),
     });
   }
 }
